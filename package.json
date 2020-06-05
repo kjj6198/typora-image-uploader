@@ -1,0 +1,20 @@
+{
+  "name": "typora-uploader",
+  "version": "0.0.1",
+  "description": "typora image uploader (s3)",
+  "main": "index.js",
+  "bin": {
+    "upload": "./index.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.693.0",
+    "short-uuid": "^3.1.1",
+    "sharp": "^0.25.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kalan <kjj6198@gmail.com>",
+  "license": "MIT"
+}
