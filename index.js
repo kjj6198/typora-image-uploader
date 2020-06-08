@@ -24,13 +24,19 @@ const s3 = new AWS.S3({
   secretAccessKey: process.env.SECRET_ACCESS_KEY,
 });
 
-function upload({ buffer, extname = ".jpg", bucket = process.env.BUCKET }) {
+function upload({
+  buffer,
+  extname = ".jpg",
+  bucket = process.env.BUCKET,
+  useUUID = true,
+  filename,
+}) {
   return new Promise((resolve) => {
-    const key = uuid.generate();
+    const key = useUUID ? uuid.generate() : filename;
     const res = s3.putObject(
       {
         ACL: "public-read",
-        Key: "images" + key + extname,
+        Key: "images/" + key + extname,
         Bucket: bucket,
         Body: buffer,
         ContentType: "image/" + extname.replace(".", ""),
@@ -58,7 +64,7 @@ const compress = (filename) => {
     return sharp(path.resolve(filename))
       .jpeg({ quality: 70 })
       .toBuffer()
-      .then(upload);
+      .then((buffer) => upload({ buffer, extname, filename }));
   }
 
   return Promise.resolve(fs.readFileSync(filepath));
