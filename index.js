@@ -31,8 +31,8 @@ function upload({
   useUUID = true,
   filename,
 }) {
+  const key = useUUID ? uuid.generate() : filename;
   return new Promise((resolve) => {
-    const key = useUUID ? uuid.generate() : filename;
     const res = s3.putObject(
       {
         ACL: "public-read",
