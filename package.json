@@ -7,7 +7,7 @@
     "upload": "./index.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.693.0",
+    "aws-sdk": "^2.814.0",
     "minipass": "2.7.0",
     "sharp": "^0.27.2",
     "short-uuid": "^3.1.1"
