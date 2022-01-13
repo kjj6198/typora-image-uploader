@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/local/bin/node
 
 const AWS = require("aws-sdk");
 const path = require("path");
@@ -67,7 +67,11 @@ const compress = (filename) => {
       .then((buffer) => upload({ buffer, extname, filename }));
   }
 
-  return Promise.resolve(fs.readFileSync(filepath));
+  return upload({
+    buffer: fs.readFileSync(filepath),
+    extname,
+    filename,
+  })
 };
 
 Promise.all(
